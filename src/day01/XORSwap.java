@@ -7,8 +7,8 @@ package day01;
 public class XORSwap {
     public static void main(String[] args) {
 
-        int a = 16;
-        int b = 603;
+        int a = 3;
+        int b = 3;
 
         System.out.println(a);
         System.out.println(b);
@@ -19,8 +19,8 @@ public class XORSwap {
         a = a ^ b;
 
 
-        System.out.println(a);
-        System.out.println(b);
+        System.out.println("a-->" + a);
+        System.out.println("b-->" + b);
 
 
         int[] arr = {3, 1, 100};
