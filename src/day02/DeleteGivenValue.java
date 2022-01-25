@@ -33,7 +33,7 @@ public class DeleteGivenValue {
             if (cur.data == value) { // 这里第一次if肯定是不相等的 因为新的head的值肯定不等于value
                 pre.next = cur.next;
             } else {
-                pre = cur;
+                pre = cur; // 不用被删除 pre紧跟cur
             }
             cur = cur.next;
         }

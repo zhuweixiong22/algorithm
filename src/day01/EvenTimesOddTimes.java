@@ -35,7 +35,7 @@ public class EvenTimesOddTimes {
         int[] count = new int[32];
         for (int num : arr) {
             for (int i = 0; i < 32; i++) {
-                /*if (((count[i] >> i) & 1) != 0) { // 与1(00...001)进行与运算不等于0说明比较的第i位为1,就累加
+                /*if (((num >> i) & 1) != 0) { // 与1(00...001)进行与运算不等于0说明比较的第i位为1,就累加
                     count[i]++;
                 }*/
                 // 优化版本 (count[i] >> i)为0的时候再与1 相当于+0 等于不累加
