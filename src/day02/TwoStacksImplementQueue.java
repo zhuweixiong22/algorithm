@@ -47,10 +47,7 @@ public class TwoStacksImplementQueue {
         }
 
         public boolean isEmpty() {
-            if (stackPush.isEmpty() && stackPop.isEmpty()) {
-                return true;
-            }
-            return false;
+            return stackPush.isEmpty() && stackPop.isEmpty();
         }
     }
     public static void main(String[] args) {

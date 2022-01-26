@@ -33,10 +33,7 @@ public class CircleQueue {
         }
 
         public boolean isEmpty() {
-            if (head == tail) {
-                return true;
-            }
-            return false;
+            return head == tail;
         }
 
         public int size() {
