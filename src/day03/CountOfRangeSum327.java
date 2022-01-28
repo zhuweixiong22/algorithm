@@ -9,6 +9,7 @@ package day03;
  */
 public class CountOfRangeSum327 {
     public static int countRangeSum(int[] nums, int lower, int upper) {
+        // 注意nums.length == 1 也是要处理的
         if (nums == null || nums.length == 0) {
             return 0;
         }
@@ -135,7 +136,16 @@ public class CountOfRangeSum327 {
         }
         System.out.println();
     }
-
+    // for test
+    public static void printArrayL(long[] arr) {
+        if (arr == null) {
+            return;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
     // for test
     public static void main(String[] args) {
         int testTime = 500000;

@@ -98,10 +98,82 @@ public class review {
             mergeArr[i++] = arr[p1++];
         }
         while (p2 <= R) {
-            mergeArr[i++] =arr[p2++];
+            mergeArr[i++] = arr[p2++];
         }
         for (i = 0; i < mergeArr.length; i++) {
             arr[L + i] = mergeArr[i];
+        }
+        return res;
+    }
+
+    public static int countRangeSum(int[] arr, int lower, int upper) {
+        if (arr == null || arr.length == 0) {
+            return 0;
+        }
+        long[] preSum = new long[arr.length + 1];
+        preSum[0] = 0;
+        for (int i = 0; i < arr.length; i++) {
+            preSum[i + 1] = preSum[i] + arr[i];
+        }
+        return processCountRangeSum(preSum, 0, preSum.length - 1, lower, upper);
+    }
+
+    public static int processCountRangeSum(long[] arr, int L, int R, int lower, int upper) {
+        if (L == R) {
+            return 0;
+        }
+        int mid = L + ((R - L) >> 1);
+        return processCountRangeSum(arr, L, mid, lower, upper)
+                + processCountRangeSum(arr, mid + 1, R, lower, upper)
+                + mergeCountRangeSum(arr, L, mid, R, lower, upper);
+    }
+
+    public static int mergeCountRangeSum(long[] arr, int L, int M, int R, int lower, int upper) {
+        int res = 0;
+        int windowL = L;
+        int windowR = L;
+        for (int i = M + 1; i <= R; i++) {
+            long min = arr[i] - upper;
+            long max = arr[i] - lower;
+            while (windowL <= M && arr[windowL] < min) {
+                windowL++;
+            }
+            while (windowR <= M && arr[windowR] <= max) {
+                windowR++;
+            }
+            res += windowR - windowL;
+        }
+
+        long[] mergeArr = new long[R - L + 1];
+        int i = 0;
+        int p1 = L;
+        int p2 = M + 1;
+        while (p1 <= M && p2 <= R) {
+            mergeArr[i++] = arr[p1] <= arr[p2] ? arr[p1++] : arr[p2++];
+        }
+        while (p1 <= M) {
+            mergeArr[i++] = arr[p1++];
+        }
+        while (p2 <= R) {
+            mergeArr[i++] = arr[p2++];
+        }
+        for (i = 0; i < mergeArr.length; i++) {
+            arr[L + i] = mergeArr[i];
+        }
+        return res;
+    }
+
+    // for test
+    public static int comparator(int[] nums, int lower, int upper) {
+        int res = 0;
+        for (int i = 0; i < nums.length; i++) {
+            long sum = 0;
+            for (int j = i; j < nums.length; j++) {
+                sum += nums[j];
+                if (sum >= lower && sum <= upper) {
+                    res++;
+                }
+            }
         }
         return res;
     }
@@ -121,6 +193,7 @@ public class review {
         }
         return res;
     }
+
     // for test
     public static int[] generateRandomArray(int maxSize, int maxValue) {
         int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
@@ -171,6 +244,18 @@ public class review {
         }
         System.out.println();
     }
+
+    // for test
+    public static void printArray(long[] arr) {
+        if (arr == null) {
+            return;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+
     // for test
     public static void main(String[] args) {
         int testTime1 = 500000;
@@ -212,5 +297,22 @@ public class review {
             }
         }
         System.out.println(succeed ? "Nice!" : "Fucking fucked!");
+
+
+        int testTime4 = 500000;
+        int maxSize4 = 100;
+        int maxValue4 = 100;
+        System.out.println("测试开始");
+        for (int i = 0; i < testTime4; i++) {
+            int[] arr11 = generateRandomArray(maxSize4, maxValue4);
+            int[] arr22 = copyArray(arr11);
+            if (countRangeSum(arr11, -2, 15) != comparator(arr22, -2, 15)) {
+                System.out.println("Oops!");
+                printArray(arr11);
+                printArray(arr22);
+                break;
+            }
+        }
+        System.out.println("测试结束");
     }
 }
