@@ -12,12 +12,15 @@ public class HeapSort {
         if (arr == null || arr.length < 2) {
             return;
         }
-        // 逐个读入O(N*lonN)
+        /*// 从上往下建堆 逐个读入O(N*logN)
         for (int i = 0; i < arr.length; i++) {
             heapInsert(arr, i);
+        }*/
+        // 从下往上建堆 一次读入 O(N)
+        for (int i = arr.length - 1; i >= 0; i--) {
+            heapify(arr, i, arr.length);
         }
         int heapSize = arr.length;
-
         // 排序的过程 靠首尾交换取得最大值从而手动打乱堆 再调用heapify来不断维护 不断获得最值
         swap(arr, 0, --heapSize);
         while (heapSize > 0) {
@@ -25,6 +28,7 @@ public class HeapSort {
             // 交换后堆大小减一 是逻辑删除该值
             swap(arr, 0, --heapSize);
         }
+        // 堆的大小为0时排序完成
     }
 
     // 上浮
@@ -39,6 +43,7 @@ public class HeapSort {
     public static void heapify(int[] arr, int i, int heapSize) {
         int leftChild = 2 * i + 1;
         // while只需要判断是否有左孩子，因为如果没有左孩子，右孩子肯定也没有
+        // 因为堆是从0索引开始的所以只能小于
         while (leftChild < heapSize) {
             // 寻找较大孩子 右孩子存在且右孩子大于左孩子的话返回右孩子
             int largest = leftChild + 1 < heapSize && arr[leftChild + 1] > arr[leftChild] ? leftChild + 1 : leftChild;
