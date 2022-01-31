@@ -41,12 +41,12 @@ public class IsPalindromeList {
             return true;
         }
         // 1 快慢指针找中点
-        ListNode faster = head;
+        ListNode faster = head.next;
         ListNode slower = head;
         // 快慢指针 快2倍 如果奇数个 while停下 慢指针指向中点
         // 如果偶数个 慢指针指向第一个中点
         // 这里注意faster.next也要判空 否则否则会空指针
-        while (faster.next != null && faster.next.next != null && slower.next != null) {
+        while (faster != null && faster.next != null ) {
             faster = faster.next.next;
             slower = slower.next;
         }
