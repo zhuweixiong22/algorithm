@@ -52,11 +52,10 @@ public class IsCompleteBinaryTree {
             if (cur.left == null || cur.right == null) {
                 isNotFullChild = true;
             }
-
         }
         return true;
     }
-    public static boolean isCBT2(TreeNode head) {
+    public static boolean isCompleteBinaryTree2(TreeNode head) {
         if (head == null) {
             return true;
         }
@@ -144,7 +143,7 @@ public class IsCompleteBinaryTree {
         int testTimes = 1000000;
         for (int i = 0; i < testTimes; i++) {
             TreeNode head = generateRandomBST(maxLevel, maxValue);
-            if (isCompleteBTree(head) != isCBT2(head)) {
+            if (isCompleteBTree(head) != isCompleteBinaryTree2(head)) {
                 System.out.println("Oops!");
             }
         }
