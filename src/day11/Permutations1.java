@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 全排列
  * @author novo
  * @date 2022/2/7-17:00
  */
