@@ -88,6 +88,8 @@ public class CoinChange {
         Arrays.fill(dp, amount + 1);
         // 容量为0的背包 最少放0个硬币
         dp[0] = 0;
+        // 如果求组合数就是外层for循环遍历物品，内层for遍历背包。
+        // 如果求排列数就是外层for遍历背包，内层for循环遍历物品。
         // 对物品从0开始遍历 因为每个物品都是可以重复选择，对于物品0我们也放进去遍历更方便
         for (int i = 0; i < n; i++) {
             for (int j = coins[i]; j <= amount; j++) {
