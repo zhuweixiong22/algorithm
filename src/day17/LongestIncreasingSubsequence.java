@@ -72,7 +72,7 @@ public class LongestIncreasingSubsequence {
             return 0;
         }
         int n = nums.length;
-        // 表示以第i个数字为结尾的最长递增子序列的长度
+        // 表示以nums[i]为结尾的最长递增子序列的长度
         int[] dp = new int[n];
         Arrays.fill(dp, 1);
         for (int i = 1; i < n; i++) {
