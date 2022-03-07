@@ -13,16 +13,16 @@ public class CohenSutherlandLineClipper implements LineClipper {
     public static final int TOP = 8;
 
 
-    private int xMin;
-    private int xMax;
-    private int yMin;
-    private int yMax;
+    private int xLeft;
+    private int xRight;
+    private int yBottom;
+    private int yTop;
 
-    public CohenSutherlandLineClipper(int xMin, int xMax, int yMin, int yMax) {
-        this.xMin = xMin;
-        this.xMax = xMax;
-        this.yMin = yMin;
-        this.yMax = yMax;
+    public CohenSutherlandLineClipper(int xLeft, int xRight, int yBottom, int yTop) {
+        this.xLeft = xLeft;
+        this.xRight = xRight;
+        this.yBottom = yBottom;
+        this.yTop = yTop;
     }
 
     /**
@@ -35,17 +35,16 @@ public class CohenSutherlandLineClipper implements LineClipper {
     private int encode(double x, double y) {
         int code = INSIDE;
 
-        if (x < xMin) {
+        if (x < xLeft) {
             code |= LEFT;
-        } else if (x > xMax) {
+        } else if (x > xRight) {
             code |= RIGHT;
         }
-        if (y < yMin) {
+        if (y < yBottom) {
             code |= BOTTOM;
-        } else if (y > yMax) {
+        } else if (y > yTop) {
             code |= TOP;
         }
-        System.out.println(code);
         return code;
     }
 
@@ -79,17 +78,17 @@ public class CohenSutherlandLineClipper implements LineClipper {
 
                 // 四个方向求交
                 if ((outPointCode & TOP) != 0) {
-                    newX = x0 + (x1 - x0) * (yMax - y0) / (y1 - y0);
-                    newY = yMax;
+                    newX = x0 + (x1 - x0) * (yTop - y0) / (y1 - y0);
+                    newY = yTop;
                 } else if ((outPointCode & BOTTOM) != 0) {
-                    newX = x0 + (x1 - x0) * (yMin - y0) / (y1 - y0);
-                    newY = yMin;
+                    newX = x0 + (x1 - x0) * (yBottom - y0) / (y1 - y0);
+                    newY = yBottom;
                 } else if ((outPointCode & RIGHT) != 0) {
-                    newY = y0 + (y1 - y0) * (xMax - x0) / (x1 - x0);
-                    newX = xMax;
+                    newY = y0 + (y1 - y0) * (xRight - x0) / (x1 - x0);
+                    newX = xRight;
                 } else {
-                    newY = y0 + (y1 - y0) * (xMin - x0) / (x1 - x0);
-                    newX = xMin;
+                    newY = y0 + (y1 - y0) * (xLeft - x0) / (x1 - x0);
+                    newX = xLeft;
                 }
 
                 // 用交点替换窗外点 完成一次裁剪

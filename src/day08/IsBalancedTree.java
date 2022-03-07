@@ -43,6 +43,27 @@ public class IsBalancedTree {
         return new Info(isBalanced,curDepth);
     }
 
+    public boolean isBalanced2(TreeNode root) {
+        return getHeight(root) != -1;
+    }
+    private int getHeight(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftHeight = getHeight(root.left);
+        int rightHeight = getHeight(root.right);
+        // 左右子树至少有一个没有平衡性 则整颗树不平衡
+        if (leftHeight == -1 || rightHeight == -1) {
+            return -1;
+        }
+        // 左右子树都为平衡二叉树 但是左右子树高度差大于1
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return -1;
+        }
+        // 返回以root为根的树的高度
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+
     public static boolean isBalanced1(TreeNode head) {
         boolean[] ans = new boolean[1];
         ans[0] = true;

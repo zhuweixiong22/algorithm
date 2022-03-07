@@ -1,5 +1,6 @@
 package day08;
 
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -52,6 +53,27 @@ public class InvertBinaryTree {
             }
             if (cur.right != null) {
                 queue.offer(cur.right);
+            }
+        }
+        return root;
+    }
+
+    // 迭代
+    public TreeNode invertTree2(TreeNode root) {
+        TreeNode cur = root;
+        Deque<TreeNode> stack = new LinkedList<>();
+        while(cur != null || !stack.isEmpty()) {
+            if (cur != null) {
+                // 前序交换
+                TreeNode temp = cur.left;
+                cur.left = cur.right;
+                cur.right = temp;
+
+                stack.offer(cur);
+                cur = cur.left;
+            } else {
+                cur = stack.poll();
+                cur = cur.right;
             }
         }
         return root;

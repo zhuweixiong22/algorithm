@@ -87,16 +87,6 @@ public class Main extends JPanel {
         mainFrame.setSize(1000, 600);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //创建按钮
-        JButton button = new JButton("ok");
-
-        button.setBackground(Color.red);
-
-        mainFrame.setLocationRelativeTo(null);
-
-        // 向frame中添加一个按钮
-        mainFrame.add(button);
-
 
         int xLeft, yBottom, xRight, yTop;
         xLeft = 100;
@@ -108,8 +98,6 @@ public class Main extends JPanel {
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
 
-
-        mainFrame.setVisible(true);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 

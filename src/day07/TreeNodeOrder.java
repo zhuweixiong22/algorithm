@@ -36,6 +36,7 @@ public class TreeNodeOrder {
         TreeNode cur = root;
         Stack<TreeNode> stack = new Stack<>();
         while (cur != null || !stack.isEmpty()) {
+            // 先访问根 再遍历左 最后遍历右
             if (cur != null) {
                 System.out.print(cur.data + " ");
                 stack.push(cur);
@@ -60,6 +61,9 @@ public class TreeNodeOrder {
         Stack<TreeNode> stack = new Stack<>();
         TreeNode cur = root;
         while (cur != null || !stack.isEmpty()) {
+            // 遇到一个结点，就把它压栈，并去遍历它的左子树；
+            // 当左子树遍历结束后，从栈顶弹出这个结点并访问它；
+            // 访问完就去遍历右
             if (cur != null) {
                 stack.push(cur);
                 cur = cur.leftChild;
