@@ -1,4 +1,4 @@
-package day09;
+package greedy;
 
 import java.util.Arrays;
 import java.util.Comparator;

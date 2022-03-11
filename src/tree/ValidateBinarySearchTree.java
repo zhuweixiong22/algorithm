@@ -2,14 +2,16 @@ package tree;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 判断是否为二叉搜索树
  * 如果要用到最大最小值 需要用Long 否则会被卡边界
+ *
  * @author novo
  * @date 2022/2/2-11:22
  */
-public class IsBinarySearchTree {
+public class ValidateBinarySearchTree {
     public static class TreeNode {
         public TreeNode left;
         public TreeNode right;
@@ -18,6 +20,55 @@ public class IsBinarySearchTree {
         public TreeNode(int val) {
             this.val = val;
         }
+    }
+
+    // 更新
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        return dfs(root, null, null);
+    }
+
+    private boolean dfs(TreeNode node, Integer min, Integer max) {
+        if (node == null) {
+            return true;
+        }
+        if (min != null && min >= node.val) {
+            return false;
+        }
+        if (max != null && max <= node.val) {
+            return false;
+        }
+        return dfs(node.left, min, node.val) && dfs(node.right, node.val, max);
+    }
+
+
+    // 中序遍历验证
+    public boolean isValidBST2(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+
+        List<Integer> res = new ArrayList<>();
+        inOrder(root, res);
+
+        int n = res.size();
+        for (int i = 0; i < n - 1; i++) {
+            if (res.get(i + 1) <= res.get(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void inOrder(TreeNode node, List<Integer> res) {
+        if (node == null) {
+            return;
+        }
+        inOrder(node.left, res);
+        res.add(node.val);
+        inOrder(node.right, res);
     }
 
     public static boolean isBinarySearchTree(TreeNode root) {
@@ -39,6 +90,7 @@ public class IsBinarySearchTree {
             this.min = min;
         }
     }
+
 
     public static boolean process(TreeNode root, long lower, long upper) {
         if (root == null) {
