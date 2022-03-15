@@ -1,4 +1,4 @@
-package day10;
+package unionset;
 
 /**
  * 200岛屿数量

@@ -1,4 +1,4 @@
-package day10;
+package unionset;
 
 import java.util.ArrayList;
 import java.util.List;
