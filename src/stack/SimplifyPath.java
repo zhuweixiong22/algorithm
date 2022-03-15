@@ -1,5 +1,7 @@
 package stack;
 
+import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -9,59 +11,54 @@ import java.util.LinkedList;
  */
 public class SimplifyPath {
     public String simplifyPath(String path) {
-        assert path.length() > 1;
-        int n = path.length();
-        char[] paths = path.toCharArray();
-        Deque<Character> stack = new LinkedList<>();
-        stack.push(paths[0]);
-        boolean hasOneDot = false;
-        for (int i = 1; i < n; i++) {
-            if (!isOp(paths[i])) {
-                stack.push(paths[i]);
-            }
-            if (i == n - 1) {
+        assert path.length() > 0;
+        // 选用切割"/"的方案 这样就可以将完整的每个文件夹分开 ".."也是一个完整的字符串 不需要记录前一个的"."
+        String[] paths = path.split("/");
+        if (paths.length == 0) {
+            return "/";
+        }
+        Deque<String> stack = new ArrayDeque<>();
+        for (String s : paths) {
+            // 注意split出来的可能还会有空字符串
+            if ("".equals(s) || ".".equals(s)) {
                 continue;
             }
-            if (paths[i] == '/' && stack.peek() != '/') {
-                stack.push(paths[i]);
-                continue;
-            }
-            if (hasOneDot && stack.peek() == '/') {
-                continue;
-            }
-            if (paths[i] == '.') {
-                if (hasOneDot) {
-                    // ..返回上个目录
+            // ".."且栈不为空 弹出一个文件夹
+            if ("..".equals(s)) {
+                if (!stack.isEmpty()) {
                     stack.pop();
-                    if (!stack.isEmpty()) {
-                        // "/../"的情况
-                        stack.pop();
-                    } else {
-                        stack.push('/');
-                    }
-                    hasOneDot = false;
-
-                } else {
-                    hasOneDot = true;
                 }
                 continue;
             }
+            // 如果是文件夹 入栈
+            stack.push(s);
+        }
+        // 到这里 栈中已经有正确路径的文件夹了，只需要逆序出来补上"/"即可
+        if (stack.isEmpty()) {
+            return "/";
         }
         StringBuilder sb = new StringBuilder();
         while (!stack.isEmpty()) {
-            sb.append(stack.removeLast());
+            // 头插法
+            sb.insert(0, stack.pop());
+            sb.insert(0, "/");
         }
         return sb.toString();
     }
 
-    private boolean isOp(char c) {
-        return c == '/' || c == '.';
-    }
 
     public static void main(String[] args) {
         SimplifyPath simplifyPath = new SimplifyPath();
         System.out.println(simplifyPath.simplifyPath("/a/./b/../../c/"));
         System.out.println(simplifyPath.simplifyPath("/../"));
-        System.out.println(simplifyPath.simplifyPath("/home//foo/"));
+        System.out.println(simplifyPath.simplifyPath("/home///foo/"));
+        String[] strs = "/home///foo/".split("/");
+        System.out.println(Arrays.toString("/".split("/")));
+        System.out.println(Arrays.toString("//".split("/")));
+        System.out.println(Arrays.toString("///".split("/")));
+        System.out.println(Arrays.toString("8///".split("/")));
+        System.out.println(Arrays.toString("/8///".split("/")));
+        System.out.println(Arrays.toString("/8////8".split("/")));
+        System.out.println(Arrays.toString("/8////8/".split("/")));
     }
 }
