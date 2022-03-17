@@ -1,5 +1,8 @@
 package dp;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 /**
  * 给你一个整数 n ，返回 和为 n 的完全平方数的最少数量 。
  * 示例 2：
@@ -38,6 +41,39 @@ public class PerfectSquares {
             dp[i] = res;
         }
         return dp[n];
+    }
+
+    // BFS
+    public int numSquares1(int n) {
+        // visited数组用来剪枝 避免重复访问相同值的结点
+        boolean[] visited = new boolean[n + 1];
+        Queue<Integer> queue = new ArrayDeque<>();
+        queue.offer(n);
+        visited[n] = true;
+        int depth = 0;
+        while (!queue.isEmpty()) {
+            int levelCount = queue.size();
+            depth++;
+            // 多叉数的BFS
+            for (int i = 0; i < levelCount; i++) {
+                int cur = queue.poll();
+                // 访问当前节点的子节点，类比于二叉树的左右子节点 这里是多叉树
+                for (int j = 1; j * j <= cur; j++) {
+                    int next = cur - j * j;
+                    if (next == 0) {
+                        return depth;
+                    }
+                    // next的值未被访问才考虑这条路径，
+                    // 因为如果这个值之前已经被访问过，说明之前有更短的路径达到这个值，那么当前这个比它长的路径就没有必要尝试下去了
+                    if (!visited[next]) {
+                        queue.offer(next);
+                        visited[next] = true;
+                    }
+                }
+            }
+        }
+        // 这个问题必有解因为n可以被n个1相加 正常情况是不会走到这里的 必然能在BFS中找到解
+        throw new IllegalArgumentException();
     }
 
     public static void main(String[] args) {
