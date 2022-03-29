@@ -1,8 +1,7 @@
 package subsequence;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
+import java.util.*;
 
 /**
  * LIS其中一个解
@@ -58,9 +57,47 @@ public class OneAnsOfLongestIncreasingSubsequence {
         }
         return res.get(maxId);
     }
+
+    public void getSeqOfLIS1(int[] nums) {
+        if (nums.length < 2) {
+            return;
+        }
+        int n = nums.length;
+        // 表示以nums[i]为结尾的最长递增子序列的长度
+        int[] dp = new int[n];
+        int[] memory = new int[n];
+        int res = 1;
+        int index = 0;
+
+        Arrays.fill(memory, -1);
+        Arrays.fill(dp, 1);
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[j] < nums[i] && dp[j] + 1 > dp[i]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                    // 记录下每个状态从哪里来的
+                    memory[i] = j;
+                }
+            }
+            // 求出最大长度 和 该序列结尾的索引
+            if (dp[i] > res) {
+                res = dp[i];
+                index = i;
+            }
+        }
+        Deque<Integer> stack = new ArrayDeque<>();
+        // 倒序输出
+        for (int i = 0, len = dp[index]; i < len; i++) {
+            System.out.println(nums[index]);
+            index = memory[index];
+        }
+        // 最后再逆序一下即可
+    }
     public static void main(String[] args) {
-        int[] nums = new int[]{10,9,2,5,3,7,101,18};
+        int[] nums = new int[]{1,2,8,6,4};
         OneAnsOfLongestIncreasingSubsequence oneAnsOfLongestIncreasingSubsequence = new OneAnsOfLongestIncreasingSubsequence();
         System.out.println(oneAnsOfLongestIncreasingSubsequence.getSeqOfLIS(nums));
+        oneAnsOfLongestIncreasingSubsequence.getSeqOfLIS1(nums);
     }
 }
