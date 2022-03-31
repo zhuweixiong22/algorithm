@@ -29,8 +29,10 @@ public class AcWing902 {
 
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
+                // 1 + dp[i][j - 1] : A增加  1 + dp[i - 1][j] ： A删除
                 dp[i][j] = Math.min(1 + dp[i][j - 1], 1 + dp[i - 1][j]);
                 if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
+                    // 如果最后一个字符相等则不用操作
                     dp[i][j] = dp[i - 1][j - 1];
                 } else {
                     dp[i][j] = Math.min(dp[i][j], 1 + dp[i - 1][j - 1]);

@@ -3,6 +3,8 @@ package dp;
 import java.util.Scanner;
 
 /**
+ * 石子合并
+ *
  * @author novo
  * @date 2022/3/31-17:10
  */
