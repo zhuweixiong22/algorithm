@@ -37,6 +37,7 @@ public class AcWing291 {
                             isValid[i] = false;
                             break;
                         }
+                        zeroNum = 0; // 也可以不清零，因为没有break掉说明前面出现的都是偶数个0
                     } else {
                         zeroNum++;
                     }
