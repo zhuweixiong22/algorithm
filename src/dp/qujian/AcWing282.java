@@ -1,4 +1,4 @@
-package dp;
+package dp.qujian;
 
 import java.util.Scanner;
 

@@ -1,10 +1,11 @@
-package dp;
+package dp.shuwei;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 /**
+ * 计数问题
  * @author novo
  * @date 2022/4/3-20:43
  */

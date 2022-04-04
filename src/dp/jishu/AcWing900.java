@@ -1,4 +1,4 @@
-package dp;
+package dp.jishu;
 
 import java.util.Scanner;
 
