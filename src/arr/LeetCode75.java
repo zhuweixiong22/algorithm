@@ -42,9 +42,9 @@ public class LeetCode75 {
     }
 
     private void swap (int[] nums, int i, int j) {
-        nums[i] = nums[i] + nums[j];
-        nums[j] = nums[i] - nums[j];
-        nums[i] = nums[i] - nums[j];
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 
     public static void main(String[] args) {
