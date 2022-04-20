@@ -3,10 +3,12 @@ package arr;
 import java.util.Arrays;
 
 /**
+ * 75. 颜色分类
  * @author novo
  * @date 2022/4/17-21:48
  */
 public class LeetCode75 {
+    // 计数排序
     public void sortColors(int[] nums) {
         int[] count = new int[3];
         for (int i = 0; i < nums.length; i++) {
@@ -24,6 +26,7 @@ public class LeetCode75 {
         }
     }
 
+    // partition
     public void sortColors2(int[] nums) {
         // 维护区间[0, zero]都为0
         int zero = -1;
