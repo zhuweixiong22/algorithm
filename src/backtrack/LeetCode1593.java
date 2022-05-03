@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * 1593. 拆分字符串使唯一子字符串的数目最大
  * @author zwx
  * @date 2022/5/1-22:12
  */
@@ -28,6 +29,7 @@ public class LeetCode1593 {
         }
 
         for (int i = 1; i <= s.length() - index; i++) {
+            // 截取[index, index + i]的子串
             String substr = s.substring(index, index + i);
             if (!set.contains(substr)) {
                 //path.add(substr);
@@ -36,7 +38,6 @@ public class LeetCode1593 {
                 //path.remove(path.size() - 1);
                 set.remove(substr);
             }
-
         }
     }
 
