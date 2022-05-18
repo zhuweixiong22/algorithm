@@ -24,12 +24,13 @@ public class AcWing282 {
         for (int len = 2; len <= n; len++) {
             // 枚举起点
             for (int i = 1; i + len - 1 <= n; i++) {
-                int j = i + len - 1;
+                int l = i;
+                int r = i + len - 1;
                 // 注意这里 除了一堆石子的区间初始值为0，其他区间（len>=2）的初始值都要设一个最大值，不然都是0
-                dp[i][j] = Integer.MAX_VALUE;
+                dp[l][r] = Integer.MAX_VALUE;
                 // 枚举分界点
-                for (int k = i; k < j; k++) {
-                    dp[i][j] = Math.min(dp[i][j], dp[i][k] + dp[k + 1][j] + (preSum[j] - preSum[i - 1]));
+                for (int k = l; k < r; k++) {
+                    dp[l][r] = Math.min(dp[l][r], dp[l][k] + dp[k + 1][r] + (preSum[r] - preSum[l - 1]));
                 }
             }
         }
