@@ -1,4 +1,4 @@
-package dp;
+package dp.shuzisanjiaoxing;
 
 import java.util.Scanner;
 

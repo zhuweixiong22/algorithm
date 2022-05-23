@@ -1,12 +1,13 @@
-package dp;
+package dp.shuzisanjiaoxing;
 
 import java.util.Scanner;
 
 /**
+ * 数字三角形
  * @author novo
  * @date 2022/3/29-16:17
  */
-public class MathTriangle {
+public class Acwing898 {
     public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
