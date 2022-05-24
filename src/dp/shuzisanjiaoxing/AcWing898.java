@@ -7,7 +7,7 @@ import java.util.Scanner;
  * @author novo
  * @date 2022/3/29-16:17
  */
-public class Acwing898 {
+public class AcWing898 {
     public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();

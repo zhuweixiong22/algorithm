@@ -3,10 +3,12 @@ package dp.shuzisanjiaoxing;
 import java.util.Scanner;
 
 /**
+ * 传纸条
+ *
  * @author zwx
  * @date 2022-05-23 23:05
  */
-public class Acwing275 {
+public class AcWing275 {
     public static void main(String[] args) {
         Scanner read = new Scanner(System.in);
         int m = read.nextInt();
