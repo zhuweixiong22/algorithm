@@ -1,9 +1,5 @@
 package 剑指offer;
 
-import day04.MyHeap;
-
-import java.util.Map;
-
 /**
  * 整数除法
  *
