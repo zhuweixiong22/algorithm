@@ -17,7 +17,7 @@ public class Main2 {
             nums[i] = read.nextInt();
         }
 
-        //int[] test = gennerateArray(20, 100);
+        //int[] test = getRandomArray(20, 100);
         Arrays.sort(nums);
         //System.out.println(Arrays.toString(test));
         binarySearch(nums, 0, nums.length - 1);
@@ -85,7 +85,7 @@ public class Main2 {
     }
 
 
-    public static int[] gennerateArray(int len, int max) {
+    public static int[] getRandomArray(int len, int max) {
         int[] arr = new int[len];
         for (int i = 0; i < arr.length; i++) {
             arr[i] = (int) (Math.random() * max);

@@ -1,4 +1,4 @@
-package exp.meiju;
+package exp.force;
 import java.util.Scanner;
 
 /**
