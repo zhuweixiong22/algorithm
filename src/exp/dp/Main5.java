@@ -18,19 +18,19 @@ public class Main5 {
             nums[i] = i;
         }
 
-        int sum = n * (n + 1) / 4; // 当且仅当两子集和相等时，和为最大值
+        int sum = n * (n + 1) / 2; // 当且仅当两子集和相等时，和为最大值
         if ((sum & 1) == 1) {
             // 数列和为奇数时，无解，因为无法分成两个和相等的子集
             System.out.println(-1);
             return;
         }
-        int[][] dp = new int[n + 1][sum + 1];
+        int[][] dp = new int[n + 1][sum / 2 + 1];
         //  考虑前i个数，它们的和恰好是j的方案数
         // dp[i][j]=dp[i−1][j](不选) + dp[i−1][j−i](选i)
         // 每个数只有2种情况，放在第一个集合和不放在第一个集合。只要确定了一个集合，另一个集合必然确定，所以结果要除以2 01背包模型
         dp[0][0] = 1;
         for (int i = 1; i <= n; i++) {
-            for (int j = 0; j <= sum; j++) {
+            for (int j = 0; j <= sum / 2; j++) {
                 dp[i][j] = dp[i - 1][j];
                 if (i <= j) {
                     dp[i][j] += dp[i - 1][j - i];
@@ -38,6 +38,6 @@ public class Main5 {
             }
         }
 
-        System.out.println(dp[n][sum] / 2);
+        System.out.println(dp[n][sum / 2] / 2);
     }
 }
