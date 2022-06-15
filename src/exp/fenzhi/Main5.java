@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
+ * 数组划分
+ * 使得中位数左边均小于等于它，中位数右边均大于等于它，即可完成题意
  * @author zwx
  * @date 2022-05-22 18:03
  */
@@ -12,7 +14,7 @@ public class Main5 {
         int[] nums = gennerateArray(10, 10);
         //int[] nums = new int[]{1, 4, 5, 6, 7, 3, 5,8};
         System.out.println(Arrays.toString(nums));
-        binarySearch(nums,0 ,nums.length - 1);
+        binarySearch(nums, 0, nums.length - 1);
         System.out.println(Arrays.toString(nums));
     }
 
