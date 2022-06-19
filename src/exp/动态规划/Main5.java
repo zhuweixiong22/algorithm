@@ -13,10 +13,6 @@ public class Main5 {
     public static void main(String[] args) {
         Scanner read = new Scanner(System.in);
         int n = read.nextInt();
-        int[] nums = new int[n + 1];
-        for (int i = 1; i <= n; i++) {
-            nums[i] = i;
-        }
 
         int sum = n * (n + 1) / 2; // 当且仅当两子集和相等时，和为最大值
         if ((sum & 1) == 1) {
