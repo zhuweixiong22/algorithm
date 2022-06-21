@@ -19,6 +19,7 @@ public class Offer010 {
             preSum[i] = preSum[i - 1] + nums[i - 1];
         }
 
+        // Si和 及 和为Si的数量
         Map<Integer, Integer> map = new HashMap<>();
         // 枚举每个区间的结尾 [0, n - 1]
         // 先将preSum[0] = 0 放进去
